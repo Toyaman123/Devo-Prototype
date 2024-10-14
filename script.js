@@ -11,7 +11,7 @@ const objectDefinitions = [
         label: "red_circle",
         originalWidth: 200, // 画像の元の幅
         originalHeight: 200, // 画像の元の高さ
-        score: 7
+        score: 8
     },
     {
         texture: "./img/2_orange_circle.png",
@@ -19,7 +19,7 @@ const objectDefinitions = [
         label: "orange_circle",
         originalWidth: 200, // 画像の元の幅
         originalHeight: 200, // 画像の元の高さ
-        score: 6
+        score: 7
     },
     {
         texture: "./img/3_yellow_circle.png",
@@ -27,7 +27,7 @@ const objectDefinitions = [
         label: "yellow_circle",
         originalWidth: 200, // 画像の元の幅
         originalHeight: 200, // 画像の元の高さ
-        score: 5
+        score: 6
     },
     {
         texture: "./img/4_lightgreen_circle.png",
@@ -35,64 +35,64 @@ const objectDefinitions = [
         label: "lightgreen_circle",
         originalWidth: 200, // 画像の元の幅
         originalHeight: 200, // 画像の元の高さ
-        score: 4
+        score: 5
     },
     {
         texture: "./img/5_green_circle.png",
-        size: 50,
+        size: 45,
         label: "green_circle",
+        originalWidth: 200, // 画像の元の幅
+        originalHeight: 200, // 画像の元の高さ
+        score: 4
+    },
+    {
+        texture: "./img/6_waterblue_circle.png",
+        size: 49,
+        label: "waterblue_circle",
         originalWidth: 200, // 画像の元の幅
         originalHeight: 200, // 画像の元の高さ
         score: 3
     },
     {
-        texture: "./img/6_waterblue_circle.png",
-        size: 60,
-        label: "waterblue_circle",
-        originalWidth: 200, // 画像の元の幅
-        originalHeight: 200, // 画像の元の高さ
-        score: 2
-    },
-    {
         texture: "./img/7_blue_circle.png",
-        size: 80,
+        size: 60,
         label: "blue_circle",
         originalWidth: 200, // 画像の元の幅
         originalHeight: 200, // 画像の元の高さ
-        score: 1
+        score: 2
     },  
-    // {
-    //     texture: "./img/8_navy_circle.png",
-    //     size: 80,
-    //     label: "navy_circle",
-    //     originalWidth: 200, // 画像の元の幅
-    //     originalHeight: 200, // 画像の元の高さ
-    //     score: 70
-    // },
+    {
+        texture: "./img/8_navy_circle.png",
+        size: 70,
+        label: "navy_circle",
+        originalWidth: 200, // 画像の元の幅
+        originalHeight: 200, // 画像の元の高さ
+        score: 1
+    },
     // {
     //     texture: "./img/9_purple_circle.png",
-    //     size: 80,
+    //     size: 40,
     //     label: "purple_circle",
     //     originalWidth: 200, // 画像の元の幅
     //     originalHeight: 200, // 画像の元の高さ
-    //     score: 70
+    //     score: 1
     // },
     // {
     //     texture: "./img/10_pink_circle.png",
-    //     size: 80,
+    //     size: 86,
     //     label: "pink_circle",
     //     originalWidth: 200, // 画像の元の幅
     //     originalHeight: 200, // 画像の元の高さ
-    //     score: 70
+    //     score: 1
     // },
     //     {
     //     texture: "./img/11_gray_circle.png",
-    //     size: 80,
+    //     size: 50,
     //     label: "gray_circle",
     //     originalWidth: 200, // 画像の元の幅
     //     originalHeight: 200, // 画像の元の高さ
-    //     score: 70
-    // }
+    //     score: 1
+    //}
 ];
 
 // 次に落とすオブジェクトをランダムに選択して作成する関数
@@ -144,7 +144,7 @@ function getNextObjectDefinition(label) {
 
 // エンジンとレンダラーを作成
 const engine = Engine.create();
-engine.world.gravity.y = -0.5;
+engine.world.gravity.y = -0.4;
 
 const render = Render.create({
     element: document.getElementById("game-screen"),
@@ -162,8 +162,8 @@ const start_y = height - 50;
 const holeWidth = 35;  // 落とし穴の幅
 
 // 天井の設定
-const leftCeiling = Bodies.rectangle((width - holeWidth) / 4, 0, (width - holeWidth) / 2, 20, { isStatic: true });
-const rightCeiling = Bodies.rectangle((width + holeWidth) * 3 / 4, 0, (width - holeWidth) / 2, 20, { isStatic: true });
+const leftCeiling = Bodies.rectangle((width - holeWidth) /4.28, 70, (width - holeWidth) / 2, 20, { isStatic: true, angle: -Math.PI / 10 });
+const rightCeiling = Bodies.rectangle((width - holeWidth) * 3.28/4.28 + holeWidth, 70, (width - holeWidth) / 2, 20, { isStatic: true, angle: Math.PI / 10 });
 
 const leftGround = Bodies.rectangle((width - holeWidth) / 4, height, (width - holeWidth) / 2, 20, { isStatic: true });
 const rightGround = Bodies.rectangle((width + holeWidth) * 3 / 4, height, (width - holeWidth) / 2, 20, { isStatic: true });
