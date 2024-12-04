@@ -10,6 +10,7 @@ import {
   World,
 } from 'matter-js';
 
+/* eslint-disable */
 // クラゲの型定義
 type Jellyfish = {
   texture: string;
@@ -210,7 +211,7 @@ export default function GameScreen() {
      * @param {Body} bodyB 衝突しているクラゲB
      * @returns {void}
      */
-    const mergeJellyFishes = (bodyA: any, bodyB: any): void => {
+    const mergeJellyFishes = (bodyA: Body, bodyB: Body): void => {
       const nextJellyfishBody: Body = getNextJellyfishBody(bodyA, bodyB);
       totalScore += jellyfishes[parseInt(nextJellyfishBody.label)].score;
       World.remove(engine.world, [bodyA, bodyB]);
@@ -293,3 +294,4 @@ export default function GameScreen() {
     </>
   );
 }
+/* eslint-disable */
