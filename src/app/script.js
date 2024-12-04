@@ -133,13 +133,13 @@ function createRandomFallingObject(x, y) {
 
 //（2024/09/28 追加）一つ下の大きさのオブジェクトを取得する関数
 function getNextObjectDefinition(label) {
-  for (let i = 1; i < objectDefinitions.length; i++) {
-      if (objectDefinitions[i].label === label) {
-          // 次のオブジェクトを配列から取得
-          return objectDefinitions[(i - 1) % objectDefinitions.length];
-      }
-  }
-  return null;
+    for (let i = 1; i < objectDefinitions.length; i++) {
+        if (objectDefinitions[i].label === label) {
+            // 次のオブジェクトを配列から取得
+            return objectDefinitions[(i - 1) % objectDefinitions.length];
+        }
+    }
+    return null;
 }
 
 // エンジンとレンダラーを作成
@@ -158,16 +158,14 @@ const height = render.options.height;
 const start_x = width/2;
 const start_y = height - 50;
 
-// 床と壁を作成
+// 天井と壁を作成
 const holeWidth = 35;  // 落とし穴の幅
 
 // 天井の設定
 const leftCeiling = Bodies.rectangle((width - holeWidth) /4.28, 70, (width - holeWidth) / 2, 20, { isStatic: true, angle: -Math.PI / 10 });
 const rightCeiling = Bodies.rectangle((width - holeWidth) * 3.28/4.28 + holeWidth, 70, (width - holeWidth) / 2, 20, { isStatic: true, angle: Math.PI / 10 });
 
-const leftGround = Bodies.rectangle((width - holeWidth) / 4, height, (width - holeWidth) / 2, 20, { isStatic: true });
-const rightGround = Bodies.rectangle((width + holeWidth) * 3 / 4, height, (width - holeWidth) / 2, 20, { isStatic: true });
-
+// 壁の設定
 const leftWall = Bodies.rectangle(0, height / 2, 20, height, { isStatic: true });
 const rightWall = Bodies.rectangle(width, height / 2, 20, height, { isStatic: true });
 
@@ -221,17 +219,17 @@ Events.on(engine, 'collisionStart', event => {
 
 //(2024/09/28　追加) 落とし穴に入ったオブジェクトを検出する
 Events.on(engine, 'beforeUpdate', () => {
-  const bodies = Matter.Composite.allBodies(engine.world);
+    const bodies = Matter.Composite.allBodies(engine.world);
 
-  bodies.forEach(body => {
-      if (body.position.y > height) {
-          // オブジェクトが画面下に到達したら削除
-          World.remove(engine.world, body);
-          // 必要に応じてスコアを減らすなどの処理
-          total_score += 100;
-          $('#score').html(total_score.toString());
-      }
-  });
+    bodies.forEach(body => {
+        if (body.position.y > height) {
+            // オブジェクトが画面下に到達したら削除
+            World.remove(engine.world, body);
+            // 必要に応じてスコアを減らすなどの処理
+            total_score += 100;
+            $('#score').html(total_score.toString());
+        }
+    });
 });
 
 // 初期の落下オブジェクトを作成
