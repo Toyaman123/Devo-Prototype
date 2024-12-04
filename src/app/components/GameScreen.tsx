@@ -221,18 +221,14 @@ export default function GameScreen() {
     /**
      * クラゲ同士で衝突したときの処理
      */
-    Events.on(
-      engine,
-      'collisionStart',
-      (e: { pairs: { bodyA: { label: string }; bodyB: { label: string } }[] }) => {
-        e.pairs.forEach((pair) => {
-          // 最小サイズでない同種のクラゲが衝突したときに合体させる
-          if (pair.bodyA.label === pair.bodyB.label && pair.bodyA.label !== '0') {
-            mergeJellyFishes(pair.bodyA, pair.bodyB);
-          }
-        });
-      }
-    );
+    Events.on(engine, 'collisionStart', (e: { pairs: { bodyA: Body; bodyB: Body }[] }) => {
+      e.pairs.forEach((pair) => {
+        // 最小サイズでない同種のクラゲが衝突したときに合体させる
+        if (pair.bodyA.label === pair.bodyB.label && pair.bodyA.label !== '0') {
+          mergeJellyFishes(pair.bodyA, pair.bodyB);
+        }
+      });
+    });
 
     /**
      * クラゲが穴を通過したときの処理
